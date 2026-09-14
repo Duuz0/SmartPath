@@ -103,6 +103,12 @@
 
         .page.active {
             display: block;
+            animation: study-page-in .38s cubic-bezier(.23, 1, .32, 1) both;
+        }
+
+        @keyframes study-page-in {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* =========================
@@ -747,7 +753,7 @@
 
                     </button>
 
-                    <img src="assets/images/profile.png" class="profile-image" alt="Perfil">
+                    <img src="img/perfil.png" class="profile-image" alt="Perfil">
 
                 </div>
 
@@ -899,7 +905,7 @@
                             Continue de onde parou
                         </h2>
 
-                        <button class="see-all">
+                        <button class="see-all" type="button" onclick="openSubject('linguagens')">
                             Ver todos
                         </button>
 
@@ -908,7 +914,7 @@
 
                     <div class="continue-card">
 
-                        <img src="assets/subjects/linguagens.png" class="continue-icon" alt="">
+                        <img src="img/icon_pt.jpeg" class="continue-icon" alt="">
 
                         <div class="continue-info">
 
@@ -953,7 +959,7 @@
                             Recomendados para você
                         </h2>
 
-                        <button class="see-all">
+                        <button class="see-all" type="button" onclick="document.querySelector('.recommendations').scrollIntoView({behavior: 'smooth'})">
                             Ver todos
                         </button>
 
@@ -966,7 +972,7 @@
 
                             <div class="recommendation-top">
 
-                                <img src="assets/subjects/natureza.png" class="recommendation-icon" alt="">
+                                <img src="img/icon_cn.jpeg" class="recommendation-icon" alt="">
 
                                 <div>
                                     <h3>Fotossíntese</h3>
@@ -987,7 +993,7 @@
 
                             <div class="recommendation-top">
 
-                                <img src="assets/subjects/matematica.png" class="recommendation-icon" alt="">
+                                <img src="img/icon_mat.jpeg" class="recommendation-icon" alt="">
 
                                 <div>
                                     <h3>Equações do 2º grau</h3>
@@ -1008,7 +1014,7 @@
 
                             <div class="recommendation-top">
 
-                                <img src="assets/subjects/linguagens.png" class="recommendation-icon" alt="">
+                                <img src="img/icon_pt.jpeg" class="recommendation-icon" alt="">
 
                                 <div>
                                     <h3>Figuras de linguagem</h3>
@@ -1042,7 +1048,7 @@
 
                     <div class="detail-header">
 
-                        <img id="detailIcon" class="detail-icon" src="" alt="">
+                        <img id="detailIcon" class="detail-icon" src="img/icon_mat.jpeg" alt="">
 
                         <div>
 
@@ -1078,7 +1084,6 @@
 
                     <div class="detail-header">
 
-                        <img id="topicIcon" class="detail-icon" src="assets/icons/book.png" alt="">
 
                         <div>
 
@@ -1136,7 +1141,7 @@
                     "Estude interpretação, literatura, gramática e comunicação.",
 
                 icon:
-                    "assets/subjects/linguagens.png",
+                    "img/icon_pt.jpeg",
 
                 topics: [
 
@@ -1183,7 +1188,7 @@
                     "Biologia, Física e Química para sua preparação.",
 
                 icon:
-                    "assets/subjects/natureza.png",
+                    "img/icon_cn.jpeg",
 
                 topics: [
 
@@ -1236,7 +1241,7 @@
                     "História, Geografia, Filosofia e Sociologia.",
 
                 icon:
-                    "assets/subjects/humanas.png",
+                    "img/icon_geo.jpeg",
 
                 topics: [
 
@@ -1289,7 +1294,7 @@
                     "Resolva problemas e domine os principais conteúdos matemáticos.",
 
                 icon:
-                    "assets/subjects/matematica.png",
+                    "img/icon_mat.jpeg",
 
                 topics: [
 
@@ -1348,7 +1353,7 @@
                     "Aprenda a construir uma redação forte e alcançar uma ótima nota.",
 
                 icon:
-                    "assets/subjects/redacao.png",
+                    "img/icon_redacao.jpeg",
 
                 topics: [
 
@@ -2125,6 +2130,15 @@
                     ? "Resposta correta! " + card.dataset.explanation
                     : (selected ? "Ainda não. " : "Selecione uma alternativa. ") + card.dataset.explanation;
             });
+
+            const answered = [...cards].filter(card => card.querySelector('input:checked')).length;
+            if (answered === cards.length && cards.length) {
+                const completed = JSON.parse(localStorage.getItem('smartpath-trail-completed') || '[]');
+                if (!completed.includes(0)) {
+                    completed.push(0);
+                    localStorage.setItem('smartpath-trail-completed', JSON.stringify(completed));
+                }
+            }
         }
 
 
@@ -2178,17 +2192,16 @@
 
         }
 document.addEventListener("DOMContentLoaded", () => {
-  // Obtém o nome do arquivo atual da URL (ex: "estudos.html")
   const paginaAtual = window.location.pathname.split("/").pop();
 
-  // Seleciona todos os botões da navegação
+
   const botoesNav = document.querySelectorAll(".nav-item");
 
   botoesNav.forEach(botao => {
-    // Pega o destino do link dentro do atributo onclick
+
     const onclickAtributo = botao.getAttribute("onclick") || "";
     
-    // Verifica se o nome da página atual está contido no link de redirecionamento
+
     if (onclickAtributo.includes(paginaAtual)) {
       botao.classList.add("is-active");
     } else {

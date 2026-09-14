@@ -16,6 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
       botao.classList.remove("is-active");
     }
   });
+
+  document.querySelectorAll('[data-route]').forEach((element) => {
+    element.addEventListener('click', () => {
+      window.location.href = element.dataset.route;
+    });
+  });
+
+  const completed = JSON.parse(localStorage.getItem('smartpath-trail-completed') || '[]').length;
+  const percent = Math.round((completed / 8) * 100);
+  const ring = document.querySelector('.progress-ring');
+  const progressNumber = document.querySelector('.progress-ring strong');
+  const trailModule = document.querySelector('.trail-summary p');
+  if (ring) ring.style.background = `conic-gradient(var(--blue) 0 ${percent}%, #d9eafa ${percent}% 100%)`;
+  if (progressNumber) progressNumber.innerHTML = `${percent}<span>%</span>`;
+  if (trailModule) trailModule.textContent = `Módulo ${completed} de 8`;
 });
 
 
