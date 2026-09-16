@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
+
+.simulados-topbar { align-items: flex-start; }
+.page-heading { display: flex; align-items: flex-start; gap: 21px; }
+.heading-icon { width: 60px; height: 60px; display: grid; place-items: center; margin-top: 3px; border-radius: 17px; color: #163d7a; background: #eef6ff; }
+.heading-icon svg { width: 39px; height: 39px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.8; }
+.simulados-topbar h1 { font-size: clamp(32px, 3vw, 43px); }
+.simulados-topbar p { max-width: 650px; margin-top: 8px; font-size: 18px; line-height: 1.55; }
+
+.simulados-panel { min-height: 620px; padding: 30px; border-radius: 22px; background: rgba(255,255,255,.85); box-shadow: 0 5px 25px rgba(30,80,150,.04); }
+.year-tabs { display: flex; flex-wrap: wrap; gap: 11px; padding-bottom: 29px; border-bottom: 1px solid #edf1f6; }
+.year-tab { min-width: 151px; padding: 14px 24px; border: 1px solid #dce5ef; border-radius: 15px; background: #fff; color: #526581; font-size: 17px; font-weight: 700; cursor: pointer; transition: .2s ease; }
+.year-tab:hover { transform: translateY(-2px); border-color: #8fc1f7; color: #1767c6; }
+.year-tab.is-active { border-color: transparent; color: #fff; background: linear-gradient(135deg,#2885e6,#126ed4); box-shadow: 0 8px 17px rgba(31,116,213,.2); }
+.section-copy { margin: 28px 0 20px; }
+.section-copy h2 { margin: 0; color: #102d5f; font: 800 26px/1.25 'Manrope',sans-serif; letter-spacing: -.5px; }
+.section-copy p { margin: 7px 0 0; color: #65738a; font-size: 16px; }
+
+.simulados-grid { display: grid; grid-template-columns: repeat(3,minmax(220px,1fr)); gap: 22px; }
+.simulados-grid.is-switching .simulado-card { animation: card-leave .16s ease-in both; }
+.simulados-grid.is-entering .simulado-card { animation: card-enter .36s cubic-bezier(.23,1,.32,1) both; }
+.simulados-grid.is-entering .simulado-card:nth-child(2) { animation-delay: .06s; }
+.simulados-grid.is-entering .simulado-card:nth-child(3) { animation-delay: .12s; }
+@keyframes card-leave { to { opacity: 0; transform: translateY(8px) scale(.985); } }
+@keyframes card-enter { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.simulado-card { --accent:#1689e8; --soft:#eaf6ff; position: relative; min-height: 275px; overflow: hidden; display: flex; flex-direction: column; padding: 25px 25px 22px; border: 1px solid #e1eaf3; border-radius: 17px; background: #fff; box-shadow: 0 9px 22px rgba(34,88,147,.05); }
+.simulado-card::before { position: absolute; content:""; inset: 0 auto 0 0; width: 8px; background: var(--accent); }
+.simulado-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb,var(--accent) 32%,white); box-shadow: 0 16px 28px rgba(34,88,147,.1); transition: .2s ease; }
+.caderno-icon { width: 59px; height: 59px; display: grid; place-items: center; border-radius: 17px; color: var(--accent); background: var(--soft); }
+.caderno-icon svg { width: 35px; height: 35px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.simulado-card h3 { margin: 19px 0 5px; color: #102e60; font: 800 21px/1.25 'Manrope',sans-serif; }
+.simulado-card p { margin: 0; color: #718096; font-size: 15px; }
+.card-footer { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: auto; padding-top: 20px; }
+.question-count { display: inline-flex; align-items: center; gap: 7px; margin-right: auto; color: #62748d; font-size: 14px; white-space: nowrap; }
+.question-count svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.card-action { display: inline-flex; align-items: center; justify-content: center; min-height: 39px; padding: 0 13px; border-radius: 10px; font-size: 13px; font-weight: 700; text-decoration: none; transition: .18s ease; }
+.answer-action { color: var(--accent); background: var(--soft); }
+.start-action { gap: 5px; color: #fff; background: #1676dc; box-shadow: 0 5px 10px rgba(19,104,205,.18); }
+.card-action:hover { transform: translateY(-2px); filter: brightness(.98); }
+.simulados-note { margin: 29px 0 0; color: #77869a; font-size: 13px; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) { .simulados-grid.is-switching .simulado-card, .simulados-grid.is-entering .simulado-card { animation: none; } }
+
+.sidebar-encouragement { margin-top: auto; min-height: 106px; display: flex; align-items: center; gap: 10px; padding: 12px; border-radius: 13px; background: #edf7ff; color: #276fc0; }
+.sidebar-encouragement img { width: 46px; height: 57px; border-radius: 8px; object-fit: cover; mix-blend-mode: multiply; }
+.sidebar-encouragement div { display: grid; gap: 4px; }
+.sidebar-encouragement strong { font-size: 13px; }
+.sidebar-encouragement span { max-width: 115px; color: #6c7d93; font-size: 11px; line-height: 1.35; }
+.sidebar-encouragement b { margin-left: auto; color: #1475d7; font-size: 28px; font-weight: 400; }
+
+@media (max-width: 1120px) { .smart-sidebar { width: 260px; flex-basis:260px; } .smart-content { width:calc(100vw - 274px); padding-left:28px; } .simulados-grid { grid-template-columns:repeat(2,minmax(230px,1fr)); } }
+@media (max-width: 760px) { .smart-shell { display:block; } .smart-sidebar { width:auto; min-height:0; margin:10px; padding:14px; } .brand-block { display:none; } .side-nav { grid-template-columns:repeat(3,1fr); gap:5px; margin:0; } .nav-item { min-height:45px; justify-content:center; gap:7px; padding:0 7px; } .nav-item span:last-child { font-size:12px; } .icones_pagina_inicial { height:19px; } .sidebar-encouragement { display:none; } .smart-content { width:100%; padding:27px 16px; } .simulados-topbar { padding:0 2px 24px; } .page-heading { gap:12px; } .heading-icon { width:48px; height:48px; } .heading-icon svg { width:30px; } .simulados-topbar h1 { font-size:30px; } .simulados-topbar p { font-size:15px; } .profile-actions { gap:8px; margin-top:0; } .avatar-button { width:45px; height:45px; } .simulados-panel { padding:20px; } .year-tab { flex:1; min-width:0; } .simulados-grid { grid-template-columns:1fr; } }

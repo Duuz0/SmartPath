@@ -210,7 +210,8 @@ button {
 .smart-content {
     width: min(100%, calc(100vw - 330px));
 
-    padding: 49px 32px 30px 39px;
+    /* Mesmo alinhamento de cabeçalho usado na página Estudos. */
+    padding: 38px 28px 40px;
 }
 
 
@@ -223,7 +224,7 @@ button {
     align-items: flex-start;
     justify-content: space-between;
 
-    padding: 0 10px 27px;
+    padding: 0 0 28px;
 }
 
 
@@ -260,9 +261,10 @@ button {
     display: flex;
     align-items: center;
 
-    gap: 31px;
+    gap: 25px;
 
-    padding: 0 2px;
+    margin-top: 9px;
+    padding: 0;
 }
 
 
@@ -291,8 +293,8 @@ button {
 
 
 .avatar-button {
-    width: 68px;
-    height: 68px;
+    width: 58px;
+    height: 58px;
 
     padding: 0;
 
@@ -300,7 +302,7 @@ button {
 
     overflow: hidden;
 
-    border: 3px solid #d9e9fa;
+    border: 3px solid #e7eef9;
 }
 
 
@@ -1081,13 +1083,14 @@ button {
 
 
     .profile-actions {
-        gap: 13px;
+        gap: 8px;
+        margin-top: 0;
     }
 
 
     .avatar-button {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
     }
 
 

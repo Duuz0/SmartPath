@@ -1,4 +1,3 @@
-// Coloque esta função no final do seu arquivo login.js
 function Mudarimagem(idCampo, idIcone) {
   const campoSenha = document.getElementById(idCampo);
   const iconeOlho = document.getElementById(idIcone);

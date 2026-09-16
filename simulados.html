@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Path - Simulados</title>
+    <link rel="stylesheet" href="pagina_inicial.css">
+    <link rel="stylesheet" href="simulados.css">
+</head>
+<body>
+    <main class="smart-shell">
+        <aside class="smart-sidebar" aria-label="Navegação principal">
+            <div class="brand-block">
+                <div class="brand-mark-wrap"><img class="brand-mark" src="img/logo_inicial.jpeg" alt="Smart Path"></div>
+            </div>
+            <nav class="side-nav">
+                <button class="nav-item" type="button" data-route="pagina_inicial.html"><span><img src="img/botao-de-inicio.png" alt="" class="icones_pagina_inicial"></span><span>Início</span></button>
+                <button class="nav-item" type="button" data-route="estudos.html"><span><img src="img/abra-o-livro.png" alt="" class="icones_pagina_inicial"></span><span>Estudos</span></button>
+                <button class="nav-item" type="button" data-route="trilhas.html"><span><img src="img/maneira.png" alt="" class="icones_pagina_inicial"></span><span>Trilhas</span></button>
+                <button class="nav-item is-active" type="button" aria-current="page"><span><img src="img/confirme.png" alt="" class="icones_pagina_inicial"></span><span>Simulados</span></button>
+                <button class="nav-item" type="button" data-route="desempenho.html"><span><img src="img/grafico.png" alt="" class="icones_pagina_inicial"></span><span>Desempenho</span></button>
+                <button class="nav-item" type="button" data-route="perfil.html"><span><img src="img/perfil-de-usuario.png" alt="" class="icones_pagina_inicial"></span><span>Perfil</span></button>
+            </nav>
+            <div class="sidebar-encouragement" aria-hidden="true">
+                <img src="img/montanha.jpeg" alt="">
+                <div><strong>Continue firme!</strong><span>O seu esforço te leva longe.</span></div><b>›</b>
+            </div>
+        </aside>
+
+        <section class="smart-content simulados-content">
+            <header class="topbar simulados-topbar">
+                <div class="page-heading">
+                    <span class="heading-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M8 3h8l3 3v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6l3-3Z"/><path d="M8 3v4h8V3M9 13l2 2 4-4"/></svg>
+                    </span>
+                    <div><h1>Simulados</h1><p>Teste seus conhecimentos e acompanhe sua evolução com simulados do ENEM.</p></div>
+                </div>
+                <div class="profile-actions">
+                    <button class="icon-button" type="button" aria-label="Notificações"><img src="img/notificacao.png" alt="" class="icones_pagina_inicial"></button>
+                    <button class="avatar-button" type="button" data-route="perfil.html" aria-label="Abrir perfil"><img src="img/perfil.png" alt="Perfil"></button>
+                </div>
+            </header>
+
+            <section class="simulados-panel" aria-labelledby="simulados-title">
+                <div class="year-tabs" role="tablist" aria-label="Selecionar ano do simulado">
+                    <button type="button" class="year-tab is-active" role="tab" aria-selected="true" data-year="2024">2024</button>
+                    <button type="button" class="year-tab" role="tab" aria-selected="false" data-year="2025">2025</button>
+                </div>
+                <div class="section-copy"><h2 id="simulados-title">Simulados do ENEM - <span id="selectedYear">2024</span></h2><p>Escolha um caderno, resolva a prova e confira o gabarito ao finalizar.</p></div>
+                <div id="simuladosGrid" class="simulados-grid" aria-live="polite"></div>
+                <p class="simulados-note">Os arquivos são abertos em uma nova aba para você estudar no seu ritmo.</p>
+            </section>
+        </section>
+    </main>
+    <script src="simulados.js"></script>
+</body>
+</html>
