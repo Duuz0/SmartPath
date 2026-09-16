@@ -125,21 +125,62 @@ function Mudarimagem(idCampo, idIcone) {
 
 
 
-//Login pré setado
 
-function entrar(event) {
-  // Impede o formulário de recarregar a página e gerar o erro de segurança
-  event.preventDefault(); 
-
-  var email = document.getElementById('email').value;
-  var senha = document.getElementById('password').value;
-
-  if (email == 'guga@gmail.com' && senha == 'oi') {
-    window.location.href = 'pagina_inicial.html';
-  } else {
-    console.log('deu erro');
-    alert('Email ou senha incorretos!');
-  }
-}
 
 new window.VLibras.Widget('https://vlibras.gov.br/app');
+
+document.querySelector('.login-form').addEventListener('submit', async (evento) => {
+  evento.preventDefault();
+
+  try {
+    const resposta = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: document.getElementById('email').value,
+        senha: document.getElementById('password').value
+      })
+    });
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+      alert(dados.erro || 'Não foi possível realizar o login.');
+      return;
+    }
+
+    window.location.href = dados.redirecionar_para;
+  } catch (erro) {
+    console.error(erro);
+    alert('Não foi possível conectar ao servidor.');
+  }
+});
+
+document.querySelector('.signup-form').addEventListener('submit', async (evento) => {
+  evento.preventDefault();
+
+  try {
+    const resposta = await fetch('/api/cadastro', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        nome: document.getElementById('new-name').value,
+        email: document.getElementById('new-email').value,
+        senha: document.getElementById('new-password').value
+      })
+    });
+
+    const dados = await resposta.json();
+
+    if (resposta.ok) {
+      alert(dados.mensagem);
+      evento.target.reset();
+      document.getElementById('tab-login').click(); // volta para o login
+    } else {
+      alert(dados.erro || 'Não foi possível cadastrar.');
+    }
+  } catch (erro) {
+    console.error(erro);
+    alert('Não foi possível conectar ao servidor.');
+  }
+});
