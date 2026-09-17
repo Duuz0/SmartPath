@@ -148,6 +148,17 @@ document.querySelector('.login-form').addEventListener('submit', async (evento) 
       return;
     }
 
+    const nomeUsuario = typeof dados.nome === 'string' ? dados.nome.trim() : '';
+
+    if (!nomeUsuario) {
+      console.error('A resposta de login não trouxe o nome do usuário.', dados);
+      alert('Não foi possível carregar seu nome. Tente entrar novamente.');
+      return;
+    }
+
+    // Guarda somente o nome para exibir a saudação na página inicial.
+    localStorage.setItem('nomeUsuario', nomeUsuario);
+
     window.location.href = dados.redirecionar_para;
   } catch (erro) {
     console.error(erro);

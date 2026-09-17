@@ -52,7 +52,7 @@ def cadastrar_usuario():
         senha_hash = generate_password_hash(senha)
 
         sql = """
-            INSERT INTO usuarios (nome, email, senha_hash)
+            INSERT INTO usuario (nome, email, senha_hash)
             VALUES (%s, %s, %s)
         """
         cursor.execute(sql, (nome, email, senha_hash))
@@ -92,7 +92,7 @@ def fazer_login():
         conexao = conectar_banco()
         cursor = conexao.cursor(dictionary=True)
         cursor.execute(
-            "SELECT nome, senha_hash FROM usuarios WHERE email = %s",
+            "SELECT nome, senha_hash FROM usuario WHERE email = %s",
             (email,)
         )
         usuario = cursor.fetchone()
@@ -102,6 +102,7 @@ def fazer_login():
 
         return jsonify({
             "mensagem": f"Login realizado. Bem-vindo(a), {usuario['nome']}!",
+            "nome": usuario["nome"],
             "redirecionar_para": "/pagina_inicial.html"
         })
 

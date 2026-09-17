@@ -1,4 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const saudacao = document.getElementById('boas-vindas');
+  const nomeUsuario = localStorage.getItem('nomeUsuario');
+
+  if (saudacao && nomeUsuario) {
+    saudacao.textContent = `Olá, ${nomeUsuario}! 👋`;
+  }
+
   // Obtém o nome do arquivo atual da URL (ex: "estudos.html")
   const paginaAtual = window.location.pathname.split("/").pop();
 
