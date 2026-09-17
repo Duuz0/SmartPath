@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPath — Meu perfil</title>
+    <link rel="stylesheet" href="pagina_inicial.css">
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+    <main class="smart-shell">
+        <aside class="smart-sidebar" aria-label="Navegação principal">
+            <div class="brand-block">
+                <div class="brand-mark-wrap">
+                    <img class="brand-mark" src="img/logo_inicial.jpeg" alt="SmartPath">
+                </div>
+            </div>
+
+            <nav class="side-nav">
+                <button class="nav-item" type="button" data-route="pagina_inicial.html"><span><img src="img/botao-de-inicio.png" alt="" class="icones_pagina_inicial"></span><span>Início</span></button>
+                <button class="nav-item" type="button" data-route="estudos.html"><span><img src="img/abra-o-livro.png" alt="" class="icones_pagina_inicial"></span><span>Estudos</span></button>
+                <button class="nav-item" type="button" data-route="trilhas.html"><span><img src="img/maneira.png" alt="" class="icones_pagina_inicial"></span><span>Trilhas</span></button>
+                <button class="nav-item" type="button" data-route="simulados.html"><span><img src="img/confirme.png" alt="" class="icones_pagina_inicial"></span><span>Simulados</span></button>
+                <button class="nav-item" type="button" data-route="desempenho.html"><span><img src="img/grafico.png" alt="" class="icones_pagina_inicial"></span><span>Desempenho</span></button>
+                <button class="nav-item is-active" type="button" aria-current="page"><span><img src="img/perfil-de-usuario.png" alt="" class="icones_pagina_inicial"></span><span>Perfil</span></button>
+            </nav>
+        </aside>
+
+        <section class="smart-content profile-page">
+            <header class="topbar profile-topbar">
+                <div>
+                    <p class="page-kicker">MINHA CONTA</p>
+                    <h1>Meu perfil</h1>
+                    <p>Veja sua evolução e mantenha seu plano em dia.</p>
+                </div>
+                <button class="avatar-button" type="button" data-open-profile aria-label="Editar foto e dados do perfil">
+                    <img src="img/perfil.png" alt="Foto de perfil">
+                </button>
+            </header>
+
+            <section class="profile-summary card-surface" aria-labelledby="profile-name">
+                <div class="profile-avatar" aria-hidden="true"><span id="profileInitials">SP</span></div>
+                <div class="profile-intro">
+                    <p class="page-kicker">ESTUDANTE SMARTPATH</p>
+                    <h2 id="profile-name">Sua jornada começa aqui</h2>
+                    <p id="profileGoalText">Defina uma meta para acompanhar seu ritmo de estudos.</p>
+                </div>
+                <button class="secondary-button" type="button" data-open-profile>Editar perfil <span aria-hidden="true">→</span></button>
+            </section>
+
+            <section class="stats-grid" aria-label="Resumo dos estudos">
+                <article class="stat-card card-surface">
+                    <span class="stat-icon blue-icon" aria-hidden="true">◷</span>
+                    <p>Horas estudadas</p>
+                    <strong id="totalStudyTime">0h 00min</strong>
+                    <small>tempo acumulado</small>
+                </article>
+                <article class="stat-card card-surface">
+                    <span class="stat-icon purple-icon" aria-hidden="true">◒</span>
+                    <p>Esta semana</p>
+                    <strong id="weeklyStudyTime">0h 00min</strong>
+                    <small id="weeklyMessage">Comece uma sessão hoje</small>
+                </article>
+                <article class="stat-card card-surface">
+                    <span class="stat-icon green-icon" aria-hidden="true">✓</span>
+                    <p>Melhor proficiência</p>
+                    <strong id="bestSubjectScore">—</strong>
+                    <small id="bestSubjectName">Registre seus acertos</small>
+                </article>
+            </section>
+
+            <section class="dashboard-grid">
+                <article class="card-surface timer-card" aria-labelledby="timerTitle">
+                    <div class="card-heading">
+                        <div>
+                            <p class="page-kicker">FOCO</p>
+                            <h2 id="timerTitle">Sessão de estudo</h2>
+                        </div>
+                        <span class="timer-status" id="timerStatus">Pronto para começar</span>
+                    </div>
+                    <div class="timer-display" id="timerDisplay" aria-live="polite">00:00:00</div>
+                    <div class="timer-controls">
+                        <label class="sr-only" for="studySubject">Matéria da sessão</label>
+                        <select id="studySubject">
+                            <option value="Matemática">Matemática</option>
+                            <option value="Linguagens">Linguagens</option>
+                            <option value="Ciências da Natureza">Ciências da Natureza</option>
+                            <option value="Ciências Humanas">Ciências Humanas</option>
+                            <option value="Redação">Redação</option>
+                        </select>
+                        <button class="primary-cta timer-button" id="timerButton" type="button">Iniciar sessão</button>
+                    </div>
+                    <p class="timer-helper">O tempo é salvo automaticamente quando você pausa ou troca de página.</p>
+                </article>
+
+                <article class="card-surface goal-card" aria-labelledby="goalTitle">
+                    <div class="card-heading">
+                        <div>
+                            <p class="page-kicker">META SEMANAL</p>
+                            <h2 id="goalTitle"><span id="weeklyGoal">8</span> horas de foco</h2>
+                        </div>
+                        <strong id="goalPercent">0%</strong>
+                    </div>
+                    <div class="goal-progress" role="progressbar" aria-label="Progresso da meta semanal" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="goalProgress"></span></div>
+                    <p id="goalDetail">Faltam 8h para alcançar sua meta.</p>
+                    <button class="text-button" type="button" data-open-profile>Alterar meta semanal</button>
+                </article>
+            </section>
+
+            <section class="performance-section card-surface" aria-labelledby="performanceTitle">
+                <div class="section-title-row">
+                    <div>
+                        <p class="page-kicker">DESEMPENHO</p>
+                        <h2 id="performanceTitle">Proficiência por matéria</h2>
+                        <p>Baseada nos acertos que você registrar.</p>
+                    </div>
+                    <button class="secondary-button" type="button" data-open-performance>Registrar desempenho <span aria-hidden="true">+</span></button>
+                </div>
+                <div class="subject-list" id="subjectList" aria-live="polite"></div>
+                <p class="empty-state" id="performanceEmpty">Ainda não há desempenho registrado. Faça um exercício e anote seus acertos aqui.</p>
+            </section>
+        </section>
+    </main>
+
+    <dialog class="profile-dialog" id="profileDialog" aria-labelledby="profileDialogTitle">
+        <form method="dialog" id="profileForm">
+            <div class="dialog-header"><div><p class="page-kicker">CONFIGURAÇÕES</p><h2 id="profileDialogTitle">Editar perfil</h2></div><button class="dialog-close" type="button" data-close-dialog="profileDialog" aria-label="Fechar">×</button></div>
+            <label for="userName">Nome</label>
+            <input id="userName" name="userName" type="text" maxlength="60" required>
+            <label for="userEmail">E-mail</label>
+            <input id="userEmail" name="userEmail" type="email" placeholder="voce@email.com">
+            <label for="goalHours">Meta semanal de horas</label>
+            <input id="goalHours" name="goalHours" type="number" min="1" max="80" step="1" required>
+            <label class="toggle-label" for="studyReminder"><span><strong>Lembrete de estudos</strong><small>Receba um lembrete para manter o ritmo.</small></span><input id="studyReminder" type="checkbox"><span class="toggle" aria-hidden="true"></span></label>
+            <div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog="profileDialog">Cancelar</button><button class="primary-cta" id="saveProfile" type="submit">Salvar alterações</button></div>
+        </form>
+    </dialog>
+
+    <dialog class="profile-dialog" id="performanceDialog" aria-labelledby="performanceDialogTitle">
+        <form method="dialog" id="performanceForm">
+            <div class="dialog-header"><div><p class="page-kicker">NOVO REGISTRO</p><h2 id="performanceDialogTitle">Registrar desempenho</h2></div><button class="dialog-close" type="button" data-close-dialog="performanceDialog" aria-label="Fechar">×</button></div>
+            <label for="performanceSubject">Matéria</label>
+            <select id="performanceSubject" required><option>Matemática</option><option>Linguagens</option><option>Ciências da Natureza</option><option>Ciências Humanas</option><option>Redação</option></select>
+            <div class="score-inputs"><div><label for="correctAnswers">Acertos</label><input id="correctAnswers" type="number" min="0" required></div><div><label for="totalAnswers">Total de questões</label><input id="totalAnswers" type="number" min="1" required></div></div>
+            <p class="form-note">O perfil calculará sua proficiência pela média dos registros de cada matéria.</p>
+            <div class="dialog-actions"><button class="secondary-button" type="button" data-close-dialog="performanceDialog">Cancelar</button><button class="primary-cta" id="savePerformance" type="submit">Salvar desempenho</button></div>
+        </form>
+    </dialog>
+
+    <script src="perfil.js"></script>
+</body>
+</html>
