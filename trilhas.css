@@ -240,35 +240,8 @@ button {
     cursor: pointer;
 }
 
-.icon-button img {
-    width: 28px;
-    height: 28px;
-    object-fit: contain;
-}
 
-.avatar-button {
-    width: 72px;
-    height: 72px;
-    display: grid;
-    place-items: center;
-    padding: 0;
-    border: 3px solid #e4edf9;
-    border-radius: 50%;
-    overflow: hidden;
-    background: #fff;
-    transition: transform .18s ease, border-color .18s ease;
-}
 
-.avatar-button:hover {
-    transform: translateY(-2px);
-    border-color: #c8dcf5;
-}
-
-.avatar-button img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 /* CARDS */
 .trilhas-list {
@@ -279,7 +252,7 @@ button {
 
 .trilha-card {
     position: relative;
-    min-height: 278px;
+    min-height: 258px;
     display: grid;
     grid-template-columns: 136px minmax(0, 1fr) 72px;
     align-items: center;
@@ -300,13 +273,7 @@ button {
     box-shadow: 0 14px 38px rgba(31, 83, 145, .10);
 }
 
-.trilha-card.exatas {
-    background: linear-gradient(112deg, #edf7ff 0%, #eaf5ff 55%, #eef7ff 100%);
-}
 
-.trilha-card.humanas {
-    background: rgba(255, 255, 255, .94);
-}
 
 .trilha-icon {
     width: 118px;
@@ -318,7 +285,7 @@ button {
 }
 
 .exatas .trilha-icon {
-    background: #dcecff;
+    background: #e9f3ff;
 }
 
 .humanas .trilha-icon {
@@ -390,31 +357,11 @@ button {
     background: rgba(239, 238, 255, .88);
 }
 
-.arrow-button {
-    width: 61px;
-    height: 61px;
-    display: grid;
-    place-items: center;
-    justify-self: end;
-    border-radius: 50%;
-    font-size: 32px;
-    line-height: 1;
-    font-weight: 400;
-    transition: transform .22s var(--ease);
-}
 
-.exatas .arrow-button {
-    color: #174f91;
-    background: #d9eaff;
-}
 
-.humanas .arrow-button {
-    color: #283a68;
-    background: #e6e5ff;
-}
-
-.trilha-card:hover .arrow-button {
-    transform: translateX(5px);
+.entrar{
+    height: 30px;
+    opacity: 0.6;
 }
 
 /* RESPONSIVO */

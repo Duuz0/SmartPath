@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartPath — Trilhas de Estudo</title>
     <link rel="stylesheet" href="trilhas.css">
+    <link rel="stylesheet" href="pagina_inicial.css">
 </head>
 <body>
     <main class="smart-shell">
@@ -77,18 +78,19 @@
 
                 <div class="profile-actions">
                     <button class="icon-button" type="button" aria-label="Notificações">
-                        <img src="img/notificacao.png" alt="">
+                        <img src="img/notificacao.png" alt="" class="icones_pagina_inicial">
                     </button>
 
-                    <a class="avatar-button" href="perfil.html" aria-label="Abrir perfil">
+                    <button class="avatar-button" type="button" data-route="perfil.html" aria-label="Abrir perfil">
                         <img src="img/perfil.png" alt="Perfil">
-                    </a>
+                    </button>
                 </div>
             </header>
 
             <section class="trilhas-list" aria-label="Trilhas disponíveis">
 
-                <a class="trilha-card exatas" href="estudos.html?materia=matematica"><div class="trilha-icon">
+                <a class="trilha-card exatas" href="estudos.html?materia=matematica">
+                    <div class="trilha-icon">
                         <img src="img/icon_mat.jpeg" alt="Matemática">
                     </div>
 
@@ -104,7 +106,7 @@
                         </div>
                     </div>
 
-                    <span class="arrow-button" aria-hidden="true">→</span></a>
+                    <img src="img/entrar.png" alt="icone de entrar" class = "entrar"></a>
 
                 <a class="trilha-card humanas" href="estudos.html?trilha=humanas">
                     <div class="trilha-icon">
@@ -124,7 +126,7 @@
                         </div>
                     </div>
 
-                    <span class="arrow-button" aria-hidden="true">→</span>
+                    <img src="img/entrar.png" alt="icone de entrar" class = "entrar">
                 </a>
 
             </section>
