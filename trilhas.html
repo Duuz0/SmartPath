@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartPath — Trilhas de Estudo</title>
+    <link rel="stylesheet" href="trilhas.css">
+</head>
+<body>
+    <main class="smart-shell">
+
+        <!-- BARRA LATERAL -->
+        <aside class="smart-sidebar" aria-label="Navegação principal">
+
+            <div class="brand-block">
+
+                <div class="brand-mark-wrap">
+                    <img class="brand-mark" src="img/logo_inicial.jpeg" alt="Logo Smart Path">
+                </div>
+
+            </div>
+
+            <nav class="side-nav">
+
+                <button class="nav-item" type="button" onclick="window.location.href='pagina_inicial.html'">
+                    <span>
+                        <img src="img/botao-de-inicio.png" alt="Ícone de início" class="icones_pagina_inicial">
+                    </span>
+                    <span>Início</span>
+                </button>
+
+                <button class="nav-item" type="button" onclick="window.location.href='estudos.html'">
+                    <span>
+                        <img src="img/abra-o-livro.png" alt="Ícone de estudos" class="icones_pagina_inicial">
+                    </span>
+                    <span>Estudos</span>
+                </button>
+
+                <button class="nav-item" type="button" onclick="window.location.href='trilhas.html'">
+                    <span>
+                        <img src="img/maneira.png" alt="Ícone de trilha" class="icones_pagina_inicial">
+                    </span>
+                    <span>Trilhas</span>
+                </button>
+
+                <button class="nav-item" type="button" onclick="window.location.href='simulados.html'">
+                    <span>
+                        <img src="img/confirme.png" alt="Ícone de simulados" class="icones_pagina_inicial">
+                    </span>
+                    <span>Simulados</span>
+                </button>
+
+                <button class="nav-item" type="button" onclick="window.location.href='desempenho.html'">
+                    <span>
+                        <img src="img/grafico.png" alt="Ícone de gráfico" class="icones_pagina_inicial">
+                    </span>
+                    <span>Desempenho</span>
+                </button>
+
+                <button class="nav-item" type="button" onclick="window.location.href='perfil.html'">
+                    <span>
+                        <img src="img/perfil-de-usuario.png" alt="Ícone de perfil" class="icones_pagina_inicial">
+                    </span>
+                    <span>Perfil</span>
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <section class="smart-content">
+            <header class="topbar">
+                <div class="heading-area">
+                    <h1>Trilhas de Estudo</h1>
+                    <p>Escolha a trilha que mais combina com seus objetivos e comece sua jornada.</p>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="icon-button" type="button" aria-label="Notificações">
+                        <img src="img/notificacao.png" alt="">
+                    </button>
+
+                    <a class="avatar-button" href="perfil.html" aria-label="Abrir perfil">
+                        <img src="img/perfil.png" alt="Perfil">
+                    </a>
+                </div>
+            </header>
+
+            <section class="trilhas-list" aria-label="Trilhas disponíveis">
+
+                <a class="trilha-card exatas" href="estudos.html?materia=matematica"><div class="trilha-icon">
+                        <img src="img/icon_mat.jpeg" alt="Matemática">
+                    </div>
+
+                    <div class="trilha-copy">
+                        <h2>Exatas</h2>
+                        <p>Aprofunde seus conhecimentos em Matemática,<br class="desktop-break">
+                           Física, Química e suas tecnologias.</p>
+
+                        <div class="subjects">
+                            <span>Matemática</span>
+                            <span>Física</span>
+                            <span>Química</span>
+                        </div>
+                    </div>
+
+                    <span class="arrow-button" aria-hidden="true">→</span></a>
+
+                <a class="trilha-card humanas" href="estudos.html?trilha=humanas">
+                    <div class="trilha-icon">
+                        <img src="img/abra-o-livro.png" alt="Humanas">
+                    </div>
+
+                    <div class="trilha-copy">
+                        <h2>Humanas</h2>
+                        <p>Desenvolva suas habilidades em História, Geografia,<br class="desktop-break">
+                           Sociologia, Filosofia e suas tecnologias.</p>
+
+                        <div class="subjects">
+                            <span>História</span>
+                            <span>Geografia</span>
+                            <span>Sociologia</span>
+                            <span>Filosofia</span>
+                        </div>
+                    </div>
+
+                    <span class="arrow-button" aria-hidden="true">→</span>
+                </a>
+
+            </section>
+        </section>
+    </main>
+</body>
+</html>
