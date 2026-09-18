@@ -83,6 +83,854 @@ button {
         0 3px 18px rgba(52, 89, 133, .04);
 }
 
+/* ==============================
+   CARD DA SMARTPATH IA
+   ============================== */
+
+.smartpath-ia-card {
+    width: calc(100% - 24px);
+    min-height: 92px;
+
+    margin: 20px 12px 0;
+    padding: 13px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: linear-gradient(135deg, #f7f9ff, #eef2ff);
+
+    border: 1px solid #e1e7f8;
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    box-shadow: 0 5px 18px rgba(65, 85, 150, 0.08);
+
+    transition: all 0.25s ease;
+}
+
+/* Efeito ao passar o mouse */
+
+.smartpath-ia-card:hover {
+    transform: translateY(-2px);
+
+    background: linear-gradient(135deg, #f9faff, #e9edff);
+
+    border-color: #ccd5f5;
+
+    box-shadow: 0 8px 22px rgba(65, 85, 150, 0.14);
+}
+
+
+/* ==============================
+   ÍCONE DO ROBÔ
+   ============================== */
+
+.ia-card-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    box-shadow: 0 3px 10px rgba(70, 90, 160, 0.10);
+}
+
+.ia-robot {
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* ==============================
+   TEXTOS
+   ============================== */
+
+.ia-card-text {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.ia-card-text strong {
+    color: #28365f;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.2;
+}
+
+.ia-card-text span {
+    color: #737d99;
+
+    font-size: 11px;
+
+    line-height: 1.35;
+}
+
+
+/* ==============================
+   SETA
+   ============================== */
+
+.ia-card-arrow {
+    flex-shrink: 0;
+
+    color: #5271ff;
+
+    font-size: 28px;
+    font-weight: 300;
+
+    line-height: 1;
+}
+
+
+/* ==============================
+   RESPONSIVIDADE
+   ============================== */
+
+@media (max-width: 900px) {
+
+    .smartpath-ia-card {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .ia-card-icon {
+        width: 42px;
+        height: 42px;
+    }
+
+    .ia-robot {
+        font-size: 24px;
+    }
+
+    .ia-card-text strong {
+        font-size: 12px;
+    }
+
+    .ia-card-text span {
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   SMARTPATH IA
+   ========================================================= */
+
+
+/* =========================================================
+   CAIXA PRINCIPAL
+   ========================================================= */
+
+.smart-ia-box {
+    position: fixed !important;
+
+    width: 390px !important;
+    height: 560px !important;
+
+    right: 30px !important;
+    bottom: 30px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+
+    background: #ffffff !important;
+
+    border-radius: 22px !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.20) !important;
+
+    z-index: 99999 !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+
+    transform: translateY(20px) scale(0.97);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+}
+
+
+/* =========================================================
+   CAIXA ABERTA
+   ========================================================= */
+
+.smart-ia-box.active {
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+    transform: translateY(0) scale(1);
+}
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.smart-ia-box .smart-ia-header {
+    width: 100% !important;
+
+    height: 82px !important;
+    min-height: 82px !important;
+
+    padding: 14px 17px !important;
+
+    box-sizing: border-box !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: space-between !important;
+
+    background: linear-gradient(
+        135deg,
+        #6c4df6 0%,
+        #5542e8 100%
+    ) !important;
+
+    color: #ffffff !important;
+}
+
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+.smart-ia-box .smart-ia-title {
+    display: flex !important;
+
+    align-items: center !important;
+
+    gap: 12px !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+.smart-ia-box .smart-ia-title h3 {
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: 17px !important;
+
+    font-weight: 700 !important;
+
+    line-height: 1.2 !important;
+}
+
+
+.smart-ia-box .smart-ia-title span {
+    display: block !important;
+
+    margin: 4px 0 0 0 !important;
+
+    padding: 0 !important;
+
+    color: rgba(255, 255, 255, 0.85) !important;
+
+    font-size: 12px !important;
+
+    line-height: 1.2 !important;
+}
+
+
+/* =========================================================
+   AVATAR / ROBÔ
+   ========================================================= */
+
+.smart-ia-box .smart-ia-avatar {
+    width: 48px !important;
+    height: 48px !important;
+
+    min-width: 48px !important;
+    min-height: 48px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    overflow: hidden !important;
+
+    background: #ffffff !important;
+
+    border-radius: 50% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+}
+
+
+.smart-ia-box .smart-ia-avatar img {
+    width: 40px !important;
+    height: 40px !important;
+
+    max-width: 40px !important;
+    max-height: 40px !important;
+
+    object-fit: contain !important;
+
+    display: block !important;
+}
+
+
+/* =========================================================
+   BOTÃO FECHAR
+   ========================================================= */
+
+.smart-ia-box .smart-ia-close {
+    width: 34px !important;
+    height: 34px !important;
+
+    min-width: 34px !important;
+    min-height: 34px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+
+    border-radius: 50% !important;
+
+    background: rgba(255, 255, 255, 0.12) !important;
+
+    color: #ffffff !important;
+
+    font-size: 25px !important;
+
+    font-weight: 300 !important;
+
+    line-height: 34px !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    cursor: pointer !important;
+
+    transition: background 0.2s ease,
+                transform 0.2s ease !important;
+}
+
+
+.smart-ia-box .smart-ia-close:hover {
+    background: rgba(255, 255, 255, 0.25) !important;
+
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   ÁREA DE CONVERSA
+   ========================================================= */
+
+.smart-ia-box .smart-ia-chat {
+    flex: 1 !important;
+
+    width: 100% !important;
+
+    min-height: 0 !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 20px 17px !important;
+
+    overflow-x: hidden !important;
+
+    overflow-y: auto !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: stretch !important;
+
+    gap: 16px !important;
+
+    background: #f7f8fc !important;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+.smart-ia-box .smart-ia-chat::-webkit-scrollbar {
+    width: 5px;
+}
+
+
+.smart-ia-box .smart-ia-chat::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+
+.smart-ia-box .smart-ia-chat::-webkit-scrollbar-thumb {
+    background: #d5d6df;
+
+    border-radius: 10px;
+}
+
+
+/* =========================================================
+   MENSAGEM DA IA
+   ========================================================= */
+
+.smart-ia-box .smart-ia-message {
+    width: auto !important;
+
+    max-width: 90% !important;
+
+    margin: 0 !important;
+
+    padding: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: flex-start !important;
+
+    gap: 8px !important;
+}
+
+
+/* =========================================================
+   AVATAR PEQUENO DA MENSAGEM
+   ========================================================= */
+
+.smart-ia-box .message-avatar {
+    width: 32px !important;
+    height: 32px !important;
+
+    min-width: 32px !important;
+    min-height: 32px !important;
+
+    flex-shrink: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    background: #ffffff !important;
+
+    border-radius: 50% !important;
+
+    overflow: hidden !important;
+
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.06) !important;
+}
+
+
+.smart-ia-box .message-avatar img {
+    width: 27px !important;
+    height: 27px !important;
+
+    max-width: 27px !important;
+    max-height: 27px !important;
+
+    object-fit: contain !important;
+
+    display: block !important;
+}
+
+
+/* =========================================================
+   CONTEÚDO DA MENSAGEM
+   ========================================================= */
+
+.smart-ia-box .message-content {
+    min-width: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+
+    align-items: flex-start !important;
+
+    gap: 4px !important;
+}
+
+
+/* NOME DA IA */
+
+.smart-ia-box .message-name {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    color: #777777 !important;
+
+    font-size: 11px !important;
+
+    font-weight: 600 !important;
+
+    line-height: 1.2 !important;
+}
+
+
+/* BALÃO */
+
+.smart-ia-box .message-content p {
+    display: block !important;
+
+    margin: 0 !important;
+
+    padding: 11px 14px !important;
+
+    background: #ffffff !important;
+
+    color: #30313d !important;
+
+    border-radius: 5px 14px 14px 14px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 1.5 !important;
+
+    text-align: left !important;
+
+    box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04) !important;
+
+    word-wrap: break-word !important;
+
+    overflow-wrap: break-word !important;
+}
+
+
+/* =========================================================
+   MENSAGEM DO USUÁRIO
+   ========================================================= */
+
+.smart-ia-box .student-message {
+    align-self: flex-end !important;
+
+    width: auto !important;
+
+    max-width: 78% !important;
+
+    margin: 0 !important;
+
+    padding: 11px 14px !important;
+
+    box-sizing: border-box !important;
+
+    background: #6c4df6 !important;
+
+    color: #ffffff !important;
+
+    border-radius: 14px 5px 14px 14px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 1.5 !important;
+
+    text-align: left !important;
+
+    word-wrap: break-word !important;
+
+    overflow-wrap: break-word !important;
+
+    box-shadow:
+        0 2px 6px rgba(108, 77, 246, 0.12) !important;
+}
+
+
+/* =========================================================
+   ÁREA DE DIGITAÇÃO
+   ========================================================= */
+
+.smart-ia-box .smart-ia-input-area {
+    width: 100% !important;
+
+    height: auto !important;
+
+    min-height: 64px !important;
+
+    flex-shrink: 0 !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 10px 12px !important;
+
+    display: flex !important;
+
+    flex-direction: row !important;
+
+    align-items: center !important;
+
+    gap: 7px !important;
+
+    background: #ffffff !important;
+
+    border-top: 1px solid #eeeeee !important;
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+.smart-ia-box .smart-ia-input-area textarea {
+    flex: 1 1 auto !important;
+
+    width: 100% !important;
+
+    height: 42px !important;
+
+    min-height: 42px !important;
+
+    max-height: 90px !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 10px 12px !important;
+
+    resize: none !important;
+
+    border: 1px solid #dedfe6 !important;
+
+    border-radius: 11px !important;
+
+    outline: none !important;
+
+    background: #f8f8fb !important;
+
+    color: #30313d !important;
+
+    font-family: inherit !important;
+
+    font-size: 13px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 20px !important;
+
+    text-align: left !important;
+
+    box-shadow: none !important;
+}
+
+
+.smart-ia-box .smart-ia-input-area textarea:focus {
+    border-color: #6c4df6 !important;
+
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 0 2px rgba(108, 77, 246, 0.08) !important;
+}
+
+
+.smart-ia-box .smart-ia-input-area textarea::placeholder {
+    color: #999999 !important;
+
+    opacity: 1 !important;
+}
+
+
+/* =========================================================
+   BOTÃO ENVIAR
+   ========================================================= */
+
+.smart-ia-box .smart-ia-send {
+    width: 42px !important;
+    height: 42px !important;
+
+    min-width: 42px !important;
+    min-height: 42px !important;
+
+    flex-shrink: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    border: none !important;
+
+    border-radius: 11px !important;
+
+    background: #6c4df6 !important;
+
+    color: #ffffff !important;
+
+    display: flex !important;
+
+    align-items: center !important;
+
+    justify-content: center !important;
+
+    cursor: pointer !important;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease !important;
+}
+
+
+.smart-ia-box .smart-ia-send:hover {
+    background: #5940d9 !important;
+
+    transform: translateY(-1px);
+}
+
+
+.smart-ia-box .smart-ia-send:disabled {
+    opacity: 0.6 !important;
+
+    cursor: not-allowed !important;
+
+    transform: none !important;
+}
+
+
+.smart-ia-box .smart-ia-send span {
+    display: block !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    font-size: 18px !important;
+
+    line-height: 1 !important;
+
+    transform: rotate(-10deg);
+}
+
+
+/* =========================================================
+   RODAPÉ
+   ========================================================= */
+
+.smart-ia-box .smart-ia-footer {
+    width: 100% !important;
+
+    height: 24px !important;
+
+    min-height: 24px !important;
+
+    flex-shrink: 0 !important;
+
+    box-sizing: border-box !important;
+
+    margin: 0 !important;
+
+    padding: 5px !important;
+
+    background: #ffffff !important;
+
+    color: #999999 !important;
+
+    font-size: 9px !important;
+
+    font-weight: 400 !important;
+
+    line-height: 14px !important;
+
+    text-align: center !important;
+}
+
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .smart-ia-box {
+        width: calc(100vw - 24px) !important;
+
+        height: 70vh !important;
+
+        right: 12px !important;
+
+        bottom: 12px !important;
+
+        border-radius: 18px !important;
+    }
+
+    .smart-ia-box .smart-ia-chat {
+        padding: 16px 13px !important;
+    }
+
+}
+
+
+/* =========================================================
+   TELAS MUITO PEQUENAS
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .smart-ia-box {
+        width: calc(100vw - 16px) !important;
+
+        right: 8px !important;
+
+        bottom: 8px !important;
+    }
+
+}
 
 /* =========================================================
    LOGO

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Path — Página inicial</title>
     <link rel="stylesheet" href="pagina_inicial.css">
+
+    
 </head>
 
 <body>
@@ -67,7 +69,27 @@
                     <span>Perfil</span>
                 </button>
 
+
+
             </nav>
+            <!-- CARD DA SMARTPATH IA -->
+            <div class="smartpath-ia-card" id="openSmartIA">
+                <div class="ia-card-icon">
+                <img src="img/IA_smartpath.png" alt="Ia da smartpath" class="ia-robot">
+            </div>
+
+            <div class="ia-card-text">
+                <strong>Precisa de ajuda?</strong>
+                <span>Converse com<br>nosso assistente IA!</span>
+            </div>
+
+            <div class="ia-card-arrow">
+                ›
+            </div>
+
+            </div>
+            </div>
+            
 
         </aside>
 
@@ -131,8 +153,8 @@
 
                     <a href="estudos.html">
                         <button class="primary-cta" type="button">
-                        Continuar estudando →
-                    </button>
+                            Continuar estudando →
+                        </button>
                     </a>
 
 
@@ -284,7 +306,7 @@
                 </div>
 
 
- 
+
                 <div class="tip-copy">
 
                     <h2>
@@ -307,6 +329,94 @@
         </section>
 
     </main>
+    </main>
+
+
+    <!-- =========================================
+         CAIXA DA SMARTPATH IA
+    ========================================== -->
+
+    <div class="smart-ia-box" id="smartIABox">
+
+        <!-- CABEÇALHO -->
+        <div class="smart-ia-header">
+
+            <div class="smart-ia-title">
+
+                <div class="smart-ia-avatar">
+                    <img src="img/IA_smartpath.png" alt="Robô SmartPath">
+                </div>
+
+                <div>
+                    <h3>SmartPath IA</h3>
+                    <span>Seu assistente de estudos</span>
+                </div>
+
+            </div>
+
+            <button class="smart-ia-close" id="closeSmartIA" type="button" aria-label="Fechar SmartPath IA">
+                &times;
+            </button>
+
+        </div>
+
+
+        <!-- ÁREA DO CHAT -->
+        <div class="smart-ia-chat" id="smartIAChat">
+
+            <!-- MENSAGEM INICIAL DA IA -->
+            <div class="smart-ia-message ia-message">
+
+                <div class="message-avatar">
+                    <img src="img/IA_smartpath.png" alt="Ia da smartpath">
+                </div>
+
+                <div class="message-content">
+
+                    <span class="message-name">
+                        SmartPath IA
+                    </span>
+
+                    <p>
+                        Olá! 👋<br>
+                        Sou sua assistente de estudos.
+                        Como posso ajudar você hoje?
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!--
+                AS MENSAGENS DA GEMINI SERÃO
+                INSERIDAS AQUI PELO JAVASCRIPT
+            -->
+
+        </div>
+
+
+        <!-- CAMPO DE MENSAGEM -->
+        <div class="smart-ia-input-area">
+
+            <textarea id="smartIAInput" placeholder="Digite sua dúvida..." rows="1"></textarea>
+
+            <button id="sendSmartIA" class="smart-ia-send" type="button" aria-label="Enviar mensagem">
+
+                <span>➤</span>
+
+            </button>
+
+        </div>
+
+
+        <div class="smart-ia-footer">
+            SmartPath IA • Seu caminho para o conhecimento
+        </div>
+
+    </div>
+
+
+    <footer></footer>
     <footer></footer>
 
     <div vw class="enabled">
@@ -315,7 +425,8 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js">new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+    <script
+        src="https://vlibras.gov.br/app/vlibras-plugin.js">new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
     <script src="pagina_inicial.js"></script>
 </body>
 
