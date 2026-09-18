@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartPath — Desempenho</title>
+  <link rel="stylesheet" href="pagina_inicial.css"><link rel="stylesheet" href="desempenho.css">
+</head>
+<body><main class="smart-shell">
+  <aside class="smart-sidebar" aria-label="Navegação principal">
+    <div class="brand-block"><div class="brand-mark-wrap"><img class="brand-mark" src="img/logo_inicial.jpeg" alt="SmartPath"></div></div>
+    <nav class="side-nav">
+      <button class="nav-item" type="button" data-route="pagina_inicial.html"><span><img src="img/botao-de-inicio.png" alt="" class="icones_pagina_inicial"></span><span>Início</span></button>
+      <button class="nav-item" type="button" data-route="estudos.html"><span><img src="img/abra-o-livro.png" alt="" class="icones_pagina_inicial"></span><span>Estudos</span></button>
+      <button class="nav-item" type="button" data-route="trilhas.html"><span><img src="img/maneira.png" alt="" class="icones_pagina_inicial"></span><span>Trilhas</span></button>
+      <button class="nav-item" type="button" data-route="simulados.html"><span><img src="img/confirme.png" alt="" class="icones_pagina_inicial"></span><span>Simulados</span></button>
+      <button class="nav-item is-active" type="button" aria-current="page"><span><img src="img/grafico.png" alt="" class="icones_pagina_inicial"></span><span>Desempenho</span></button>
+      <button class="nav-item" type="button" data-route="perfil.html"><span><img src="img/perfil-de-usuario.png" alt="" class="icones_pagina_inicial"></span><span>Perfil</span></button>
+    </nav>
+  </aside>
+  <section class="smart-content performance-page">
+    <header class="topbar performance-topbar"><div><p class="page-kicker">ACOMPANHAMENTO</p><h1>Seu desempenho</h1><p>Entenda seu ritmo, fortaleça seus pontos e avance com estratégia.</p></div><img src="img/perfil.png" class="performance-avatar" alt="Foto de perfil"></header>
+    <section class="period-selector" aria-label="Período da análise"><button class="period-button is-active" data-period="week" type="button">Esta semana</button><button class="period-button" data-period="all" type="button">Todo o período</button></section>
+    <section class="overview-grid" aria-label="Resumo de desempenho">
+      <article class="overview-card featured-card"><span class="card-label">NOTA PROJETADA</span><strong id="projectedScore">—</strong><p id="scoreDescription">Registre seus acertos para estimar sua nota.</p><small>Estimativa pedagógica — não substitui a nota oficial do ENEM.</small></article>
+      <article class="overview-card"><span class="overview-icon blue" aria-hidden="true">◷</span><span class="card-label">HORAS ESTUDADAS</span><strong id="studyHours">0h 00min</strong><p id="studyHoursDetail">nesta semana</p></article>
+      <article class="overview-card"><span class="overview-icon green" aria-hidden="true">↗</span><span class="card-label">PROFICIÊNCIA GERAL</span><strong id="overallProficiency">—</strong><p id="proficiencyDetail">Aguardando questões respondidas</p></article>
+    </section>
+    <section class="content-grid">
+      <article class="panel subject-panel"><div class="panel-heading"><div><p class="page-kicker">POR ÁREA</p><h2>Matérias em foco</h2></div><span class="legend"><i></i> Proficiência</span></div><div id="subjectPerformance" class="subject-performance" aria-live="polite"></div></article>
+      <article class="panel insight-panel"><p class="page-kicker">PRÓXIMO PASSO</p><div class="insight-icon" aria-hidden="true">✦</div><h2 id="insightTitle">Comece registrando seu progresso</h2><p id="insightText">Use o Perfil para marcar uma sessão de estudo e registrar seus acertos nos exercícios.</p><button class="insight-button" type="button" data-route="perfil.html">Registrar desempenho <span aria-hidden="true">→</span></button></article>
+    </section>
+    <section class="panel weekly-panel"><div class="panel-heading"><div><p class="page-kicker">RITMO DE ESTUDO</p><h2>Horas por dia</h2></div><span id="chartSummary" class="chart-summary">0h acumuladas</span></div><div id="weeklyChart" class="weekly-chart" role="img" aria-label="Gráfico de horas estudadas por dia"></div></section>
+  </section>
+</main><script src="desempenho.js"></script></body></html>
