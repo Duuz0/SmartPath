@@ -86,7 +86,7 @@ function renderYear(year, shouldAnimate = false) {
         <h3>Caderno ${index + 1} - ${item.color}</h3>
 
         <p>
-          Prova completa do simulado ENEM ${year}.
+          Simulado completo do ENEM ${year}.
         </p>
 
         <div class="card-footer">
