@@ -80,19 +80,52 @@
               <label class="field-label" for="new-email">E-mail</label>
               <div class="input-wrap">
                 <img src="img/perfil.png" alt="E-mail" class="icone_login">
-                <input id="new-email" name="email" type="email" placeholder="seu@email.com" required />
+                <input
+                  id="new-email"
+                  name="email"
+                  type="email"
+                  placeholder="seu@email.com"
+                  autocomplete="email"
+                  inputmode="email"
+                  pattern="[^\s@]+@[^\s@]+\.[^\s@]{2,}"
+                  aria-describedby="email-help"
+                  required
+                />
               </div>
+              <p class="field-help" id="email-help">Use um e-mail válido, como nome@dominio.com.</p>
             
               <label class="field-label password-label" for="new-password">Criar Senha</label>
               <div class="input-wrap">
                 <img src="img/cadeado.png" alt="Cadeado" class="icone_login">
 
-                <input id="new-password" name="password" type="password" placeholder="Crie uma senha forte" required />
+                <input id="new-password" name="password" type="password" placeholder="Crie uma senha forte" autocomplete="new-password" minlength="6" aria-describedby="password-help" required />
 
                 <button type="button" class="btn-olho" onclick="Mudarimagem('new-password', 'iconeOlhoCadastro')"> 
                   <img src="img/olho.png" alt="Visualizar senha" class="icone_login" id="iconeOlhoCadastro">
                 </button>
               </div>
+              <p class="field-help" id="password-help">Use pelo menos 6 caracteres.</p>
+
+              <label class="field-label password-label" for="confirm-password">Confirme sua senha</label>
+              <div class="input-wrap">
+                <img src="img/cadeado.png" alt="Cadeado" class="icone_login">
+                <input id="confirm-password" name="confirm_password" type="password" placeholder="Digite a senha novamente" autocomplete="new-password" required />
+                <button type="button" class="btn-olho" onclick="Mudarimagem('confirm-password', 'iconeOlhoConfirmacao')" aria-label="Mostrar ou ocultar confirmação de senha">
+                  <img src="img/olho.png" alt="" class="icone_login" id="iconeOlhoConfirmacao">
+                </button>
+              </div>
+              <p class="field-help" id="password-match-status" aria-live="polite"></p>
+
+              <section class="privacy-notice" aria-labelledby="privacy-title">
+                <h2 id="privacy-title">Privacidade e proteção dos seus dados</h2>
+                <p>Usamos seu nome, e-mail e senha protegida por hash para criar e manter sua conta. Não vendemos seus dados. Você pode solicitar acesso, correção ou exclusão pelo canal de atendimento.</p>
+                <button class="terms-link" type="button" id="open-terms">Ler termos de uso e privacidade</button>
+              </section>
+
+              <label class="terms-consent" for="terms-accepted">
+                <input id="terms-accepted" name="terms_accepted" type="checkbox" required />
+                <span>Li e aceito os Termos de Uso e a Política de Privacidade.</span>
+              </label>
             
               <button class="primary-button" type="submit">Criar Conta</button>
             
@@ -111,6 +144,29 @@
         </section>
       </section>
     </main>
+
+    <dialog class="terms-dialog" id="terms-dialog" aria-labelledby="terms-title">
+      <div class="terms-dialog-content">
+        <div class="terms-dialog-header">
+          <h2 id="terms-title">Termos de Uso e Privacidade</h2>
+          <button class="dialog-close" type="button" id="close-terms" aria-label="Fechar termos">×</button>
+        </div>
+        <div class="terms-dialog-body">
+          <p><strong>Versão 1.0 — 18 de novembro de 2026</strong></p>
+          <h3>Dados tratados e finalidade</h3>
+          <p>Para criar e administrar sua conta, tratamos seu nome, e-mail e senha. A senha é armazenada apenas em formato protegido por hash; ela não é guardada em texto aberto. Esses dados são usados para autenticação, comunicação relacionada à conta e funcionamento da plataforma.</p>
+          <h3>Compartilhamento e segurança</h3>
+          <p>Não comercializamos seus dados pessoais. O acesso é restrito ao necessário para operar e proteger o SmartPath, com medidas técnicas e organizacionais adequadas.</p>
+          <h3>Seus direitos</h3>
+          <p>Nos termos da LGPD, você pode solicitar confirmação do tratamento, acesso, correção, anonimização, bloqueio, eliminação, portabilidade e informações sobre compartilhamentos, quando aplicável. Para isso, use o canal de atendimento informado pela plataforma.</p>
+          <h3>Retenção e descarte</h3>
+          <p>Os dados são mantidos enquanto sua conta estiver ativa ou pelo período necessário para cumprir obrigações legais. Após um pedido de exclusão, os dados pessoais são eliminados ou anonimizados de forma segura, salvo registros que precisem ser preservados por obrigação legal, prevenção a fraudes ou exercício regular de direitos.</p>
+          <h3>Consentimento</h3>
+          <p>Ao marcar o aceite, você declara que leu estes termos. O aceite é necessário para criar a conta e pode ser revogado mediante solicitação de exclusão da conta, observadas as hipóteses legais de retenção.</p>
+        </div>
+        <button class="primary-button dialog-accept" type="button" id="accept-terms">Li e aceito os termos</button>
+      </div>
+    </dialog>
 
      <div vw class="enabled">
         <div vw-access-button class="active"></div>

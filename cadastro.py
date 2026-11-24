@@ -1,3 +1,5 @@
+import os
+import re
 from flask import Flask, jsonify, request, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 import mysql.connector
@@ -8,15 +10,49 @@ from mysql.connector import Error
 #app = Flask(__name__, template_folder=".", static_folder=".")
 app = Flask(__name__, template_folder=".", static_folder=".", static_url_path="")
 
+EMAIL_REGEX = re.compile(r"^[^\s@]+@[^\s@]+\.[^\s@]{2,}$")
+pasta_do_script = os.path.dirname(os.path.abspath(__file__))
+ssl_cert = os.path.join(pasta_do_script, "ca.pem")
+
+
+def carregar_variaveis_locais():
+    """Carrega o .env local sem sobrescrever variáveis configuradas no servidor."""
+    caminho_env = os.path.join(pasta_do_script, ".env")
+
+    if not os.path.isfile(caminho_env):
+        return
+
+    with open(caminho_env, encoding="utf-8") as arquivo_env:
+        for linha in arquivo_env:
+            linha = linha.strip()
+            if not linha or linha.startswith("#") or "=" not in linha:
+                continue
+
+            chave, valor = linha.split("=", 1)
+            chave = chave.strip()
+            valor = valor.strip().strip('"').strip("'")
+            if chave:
+                os.environ.setdefault(chave, valor)
+
 
 def conectar_banco():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="@Hugon26",
-        database="smartpath"
-    )
+    carregar_variaveis_locais()
 
+    configuracao = {
+        "host": os.getenv("DB_HOST", "").strip().lstrip(":"),
+        "user": os.getenv("DB_USER"),
+        "password": os.getenv("DB_PASSWORD"),
+        "database": os.getenv("DB_DATABASE", "").strip().lstrip(":"),
+        "port": int(os.getenv("DB_PORT", "3306").strip().lstrip(":")),
+    }
+
+    if not all(configuracao[chave] for chave in ("host", "user", "password", "database")):
+        raise RuntimeError("As variáveis de conexão com o banco não estão configuradas.")
+
+    if os.path.isfile(ssl_cert):
+        configuracao["ssl_ca"] = ssl_cert
+
+    return mysql.connector.connect(**configuracao)
 
 @app.route("/")
 def pagina_inicial():
@@ -34,12 +70,23 @@ def cadastrar_usuario():
     nome = dados.get("nome", "").strip()
     email = dados.get("email", "").strip().lower()
     senha = dados.get("senha", "")
+    confirmar_senha = dados.get("confirmar_senha", "")
+    aceitou_termos = dados.get("aceitou_termos") is True
 
-    if not nome or not email or not senha:
+    if not nome or not email or not senha or not confirmar_senha:
         return jsonify({"erro": "Preencha todos os campos."}), 400
+
+    if not EMAIL_REGEX.fullmatch(email):
+        return jsonify({"erro": "Informe um e-mail válido."}), 400
 
     if len(senha) < 6:
         return jsonify({"erro": "A senha precisa ter pelo menos 6 caracteres."}), 400
+
+    if senha != confirmar_senha:
+        return jsonify({"erro": "As senhas não coincidem."}), 400
+
+    if not aceitou_termos:
+        return jsonify({"erro": "Você precisa aceitar os Termos de Uso e a Política de Privacidade."}), 400
 
     conexao = None
     cursor = None
@@ -84,6 +131,9 @@ def fazer_login():
 
     if not email or not senha:
         return jsonify({"erro": "Informe o e-mail e a senha."}), 400
+
+    if not EMAIL_REGEX.fullmatch(email):
+        return jsonify({"erro": "Informe um e-mail válido."}), 400
 
     conexao = None
     cursor = None

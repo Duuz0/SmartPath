@@ -18,6 +18,7 @@ html, body { min-height: 100%; }
 body {
   margin: 0;
   min-width: 320px;
+  overflow-x: hidden;
   background: #edf4ff;
 }
 
@@ -26,16 +27,18 @@ button, a { cursor: pointer; }
 button { border: 0; }
 
 .login-page {
-  min-height: 80vh;
+  min-height: 100vh;
+  min-height: 100dvh;
   display: grid;
   place-items: center;
-  padding: 16px 24px;
+  padding: clamp(16px, 3vw, 40px);
   background: #eef5ff;
 }
 
 .login-shell {
   width: min(1472px, 100%);
-  height: 95%;
+  min-width: 0;
+  min-height: min(860px, calc(100dvh - 80px));
   display: grid;
   grid-template-columns: minmax(440px, 1fr) minmax(550px, 1.03fr);
   overflow: hidden;
@@ -88,7 +91,9 @@ button { border: 0; }
 }
 
 .form-content {
-  width: min(100%, 656px);
+  width: 100%;
+  max-width: 656px;
+  min-width: 0;
   padding: 74px 66px 60px;
 }
 
@@ -196,6 +201,17 @@ input:focus-visible {
 }
 
 .input-wrap input::placeholder { color: #858992; opacity: 1; }
+
+.field-help {
+  min-height: 1.25rem;
+  margin: 7px 0 0;
+  color: var(--smart-muted);
+  font-size: .85rem;
+  line-height: 1.35;
+}
+
+.field-help.is-valid { color: #167443; }
+.field-help.is-invalid { color: #b42318; }
 
 .icon-button {
   display: grid;
@@ -310,12 +326,118 @@ input:focus-visible {
 
 .signup-link { margin-left: 8px; }
 
+.privacy-notice {
+  margin-top: 28px;
+  padding: 16px;
+  border: 1px solid #d7e5f6;
+  border-radius: 12px;
+  background: #f7fbff;
+}
+
+.privacy-notice h2 {
+  margin: 0;
+  color: var(--smart-navy);
+  font-size: 1rem;
+}
+
+.privacy-notice p {
+  margin: 8px 0 10px;
+  color: #4f5968;
+  font-size: .9rem;
+  line-height: 1.5;
+}
+
+.terms-link {
+  padding: 0;
+  color: #27649e;
+  background: transparent;
+  font-size: .9rem;
+  font-weight: 700;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.terms-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 16px;
+  color: #24354f;
+  font-size: .92rem;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.terms-consent input {
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--smart-blue);
+  flex: 0 0 auto;
+}
+
+.terms-dialog {
+  width: min(680px, calc(100vw - 32px));
+  max-height: min(760px, calc(100dvh - 32px));
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  box-shadow: 0 24px 80px rgba(16, 39, 73, .35);
+}
+
+.terms-dialog::backdrop { background: rgba(9, 25, 48, .62); }
+
+.terms-dialog-content { padding: clamp(22px, 4vw, 34px); }
+
+.terms-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.terms-dialog h2 {
+  margin: 0;
+  color: var(--smart-navy);
+  font-size: clamp(1.35rem, 4vw, 1.8rem);
+}
+
+.dialog-close {
+  width: 36px;
+  height: 36px;
+  color: #43546d;
+  background: #edf4ff;
+  border-radius: 50%;
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.terms-dialog-body {
+  max-height: min(510px, calc(100dvh - 230px));
+  margin-top: 20px;
+  overflow-y: auto;
+  color: #465364;
+  font-size: .94rem;
+  line-height: 1.55;
+}
+
+.terms-dialog-body h3 {
+  margin: 20px 0 5px;
+  color: var(--smart-navy);
+  font-size: 1rem;
+}
+
+.terms-dialog-body p { margin: 0 0 12px; }
+.dialog-accept { margin-top: 22px; }
+
 
 
 @media (max-width: 930px) {
   .login-page { padding: 0; }
   .login-shell {
     min-height: 100vh;
+    min-height: 100dvh;
     border-radius: 0;
     grid-template-columns: 0.88fr 1.12fr;
   }
@@ -324,15 +446,26 @@ input:focus-visible {
 }
 
 @media (max-width: 700px) {
+  .login-page {
+    display: block;
+    overflow-x: hidden;
+  }
   .login-shell {
     display: block;
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     overflow: visible;
   }
+  .form-panel,
+  .form-content,
+  .auth-tabs,
+  .login-form,
+  .signup-form { min-width: 0; }
   .brand-panel {
-    height: 40vh;
-    min-height: 290px;
-    max-height: 390px;
+    height: clamp(180px, 32vh, 300px);
+    min-height: 0;
+    max-height: none;
   }
   .brand-panel-image { object-position: center top; }
   .form-panel {
@@ -348,6 +481,15 @@ input:focus-visible {
   .login-form { margin-top: 34px; }
   .input-wrap { min-height: 62px; }
   .primary-button { margin-top: 36px; }
+  .terms-dialog-content { padding: 22px; }
+  .terms-dialog-body { max-height: calc(100dvh - 245px); }
+}
+
+@media (max-width: 390px) {
+  .form-content { padding: 32px 18px 42px; }
+  .input-wrap { padding: 0 14px; gap: 12px; }
+  .welcome-block h1 { font-size: 1.8rem; }
+  .privacy-notice { padding: 14px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
