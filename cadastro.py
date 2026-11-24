@@ -1,5 +1,6 @@
 import os
 import re
+from urllib.parse import parse_qs, unquote, urlsplit
 from flask import Flask, jsonify, request, render_template
 from werkzeug.security import check_password_hash, generate_password_hash
 import mysql.connector
@@ -35,24 +36,60 @@ def carregar_variaveis_locais():
                 os.environ.setdefault(chave, valor)
 
 
-def conectar_banco():
+def obter_configuracao_banco():
+    """Monta a conexão a partir da Vercel ou do .env usado localmente."""
     carregar_variaveis_locais()
 
-    configuracao = {
-        "host": os.getenv("DB_HOST", "").strip().lstrip(":"),
-        "user": os.getenv("DB_USER"),
-        "password": os.getenv("DB_PASSWORD"),
-        "database": os.getenv("DB_DATABASE", "").strip().lstrip(":"),
-        "port": int(os.getenv("DB_PORT", "3306").strip().lstrip(":")),
-    }
+    # DATABASE_URL/MYSQL_URL permite usar uma única variável secreta fornecida
+    # por uma integração de banco na Vercel. As variáveis DB_* seguem aceitas
+    # para não quebrar o desenvolvimento local já existente.
+    url_banco = os.getenv("DATABASE_URL") or os.getenv("MYSQL_URL")
+    if url_banco:
+        url = urlsplit(url_banco)
+        if url.scheme not in {"mysql", "mysql+mysqlconnector"}:
+            raise RuntimeError("DATABASE_URL deve usar o formato mysql://.")
+
+        configuracao = {
+            "host": url.hostname,
+            "user": unquote(url.username or ""),
+            "password": unquote(url.password or ""),
+            "database": unquote(url.path.lstrip("/")),
+            "port": url.port or 3306,
+        }
+
+        modo_ssl = parse_qs(url.query).get("ssl-mode", [""])[0].upper()
+        if modo_ssl == "DISABLED":
+            configuracao["ssl_disabled"] = True
+        elif modo_ssl in {"REQUIRED", "VERIFY_CA", "VERIFY_IDENTITY"}:
+            # O Aiven exige TLS; deixar isso explícito evita conexão sem criptografia.
+            configuracao["ssl_disabled"] = False
+    else:
+        porta = os.getenv("DB_PORT", "3306").strip().lstrip(":")
+        try:
+            porta = int(porta)
+        except ValueError as erro:
+            raise RuntimeError("DB_PORT deve ser um número válido.") from erro
+
+        configuracao = {
+            "host": os.getenv("DB_HOST", "").strip().lstrip(":"),
+            "user": os.getenv("DB_USER", "").strip(),
+            "password": os.getenv("DB_PASSWORD", ""),
+            "database": os.getenv("DB_DATABASE", "").strip().lstrip(":"),
+            "port": porta,
+        }
 
     if not all(configuracao[chave] for chave in ("host", "user", "password", "database")):
         raise RuntimeError("As variáveis de conexão com o banco não estão configuradas.")
 
-    if os.path.isfile(ssl_cert):
-        configuracao["ssl_ca"] = ssl_cert
+    certificado_ssl = os.getenv("DB_SSL_CA", ssl_cert)
+    if certificado_ssl and os.path.isfile(certificado_ssl):
+        configuracao["ssl_ca"] = certificado_ssl
 
-    return mysql.connector.connect(**configuracao)
+    return configuracao
+
+
+def conectar_banco():
+    return mysql.connector.connect(**obter_configuracao_banco())
 
 @app.route("/")
 def pagina_inicial():
@@ -109,11 +146,12 @@ def cadastrar_usuario():
             "mensagem": "Usuário cadastrado com sucesso!"
         }), 201
 
-    except Error as erro:
-        if erro.errno == 1062:
+    except (Error, RuntimeError, ValueError) as erro:
+        app.logger.exception("Falha no cadastro")
+        if getattr(erro, "errno", None) == 1062:
             return jsonify({"erro": "Este e-mail já está cadastrado."}), 409
 
-        return jsonify({"erro": f"Erro ao salvar o cadastro: {erro}"}), 500
+        return jsonify({"erro": "Não foi possível concluir o cadastro."}), 500
 
     finally:
         if cursor:
@@ -156,8 +194,9 @@ def fazer_login():
             "redirecionar_para": "/pagina_inicial.html"
         })
 
-    except Error as erro:
-        return jsonify({"erro": f"Erro ao realizar login: {erro}"}), 500
+    except (Error, RuntimeError, ValueError):
+        app.logger.exception("Falha no login")
+        return jsonify({"erro": "Não foi possível realizar o login."}), 500
 
     finally:
         if cursor:

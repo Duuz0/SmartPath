@@ -3,6 +3,12 @@
   "functions": {
     "api/ia.py": {
       "excludeFiles": "{.venv/**,documentacao/**,assets/**,img/**}"
+    },
+    "api/cadastro.py": {
+      "excludeFiles": "{.venv/**,documentacao/**,assets/**,img/**}"
+    },
+    "api/login.py": {
+      "excludeFiles": "{.venv/**,documentacao/**,assets/**,img/**}"
     }
   }
 }
