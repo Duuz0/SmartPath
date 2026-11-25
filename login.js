@@ -210,6 +210,7 @@ document.querySelector('.login-form').addEventListener('submit', async (evento) 
 
     // Guarda somente o nome para exibir a saudação na página inicial.
     localStorage.setItem('nomeUsuario', nomeUsuario);
+    localStorage.setItem('emailUsuario', document.getElementById('email').value.trim().toLowerCase());
 
     window.location.href = dados.redirecionar_para;
   } catch (erro) {

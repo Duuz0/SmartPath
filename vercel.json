@@ -9,6 +9,9 @@
     },
     "api/login.py": {
       "excludeFiles": "{.venv/**,documentacao/**,assets/**,img/**}"
+    },
+    "api/excluir-conta.py": {
+      "excludeFiles": "{.venv/**,documentacao/**,assets/**,img/**}"
     }
   }
 }

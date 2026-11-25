@@ -204,5 +204,53 @@ def fazer_login():
         if conexao and conexao.is_connected():
             conexao.close()
 
+
+@app.route("/api/excluir-conta", methods=["POST"])
+def excluir_conta():
+    """Exclui a conta após confirmar as credenciais do próprio usuário."""
+    dados = request.get_json(silent=True) or {}
+
+    email = dados.get("email", "").strip().lower()
+    senha = dados.get("senha", "")
+
+    if not email or not senha:
+        return jsonify({"erro": "Informe o e-mail e a senha para excluir a conta."}), 400
+
+    if not EMAIL_REGEX.fullmatch(email):
+        return jsonify({"erro": "Informe um e-mail válido."}), 400
+
+    conexao = None
+    cursor = None
+
+    try:
+        conexao = conectar_banco()
+        cursor = conexao.cursor(dictionary=True)
+        cursor.execute(
+            "SELECT senha_hash FROM usuario WHERE email = %s",
+            (email,)
+        )
+        usuario = cursor.fetchone()
+
+        # A senha é solicitada novamente para impedir que alguém com acesso ao
+        # navegador exclua uma conta sem autorização do titular.
+        if not usuario or not check_password_hash(usuario["senha_hash"], senha):
+            return jsonify({"erro": "E-mail ou senha incorretos."}), 401
+
+        cursor.execute("DELETE FROM usuario WHERE email = %s", (email,))
+        conexao.commit()
+
+        return jsonify({"mensagem": "Sua conta e os dados associados foram excluídos."})
+
+    except (Error, RuntimeError, ValueError):
+        app.logger.exception("Falha ao excluir conta")
+        return jsonify({"erro": "Não foi possível excluir a conta agora. Tente novamente."}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conexao and conexao.is_connected():
+            conexao.close()
+
+
 if __name__ == "__main__":
     app.run(debug=True)

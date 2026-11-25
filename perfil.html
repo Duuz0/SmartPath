@@ -155,6 +155,15 @@
                 <p class="empty-state" id="performanceEmpty">Ainda não há desempenho registrado. Faça um exercício e
                     anote seus acertos aqui.</p>
             </section>
+
+            <section class="account-danger-zone" aria-labelledby="accountDangerTitle">
+                <div>
+                    <p class="page-kicker">PRIVACIDADE</p>
+                    <h2 id="accountDangerTitle">Excluir minha conta</h2>
+                    <p>Apague permanentemente sua conta e os dados de estudo salvos neste dispositivo.</p>
+                </div>
+                <button class="danger-button" type="button" id="openDeleteAccount">Excluir conta e dados</button>
+            </section>
         </section>
     </main>
 
@@ -209,6 +218,33 @@
             <div class="dialog-actions"><button class="secondary-button" type="button"
                     data-close-dialog="performanceDialog">Cancelar</button><button class="primary-cta"
                     id="savePerformance" type="submit">Salvar desempenho</button></div>
+        </form>
+    </dialog>
+
+    <dialog class="profile-dialog" id="deleteAccountDialog" aria-labelledby="deleteAccountDialogTitle">
+        <form id="deleteAccountForm">
+            <div class="dialog-header">
+                <div>
+                    <p class="page-kicker danger-kicker">AÇÃO IRREVERSÍVEL</p>
+                    <h2 id="deleteAccountDialogTitle">Excluir conta e dados</h2>
+                </div>
+                <button class="dialog-close" type="button" data-close-dialog="deleteAccountDialog"
+                    aria-label="Fechar">×</button>
+            </div>
+            <p class="form-note delete-warning">Esta ação exclui seu cadastro do SmartPath e remove o histórico de estudos salvo neste navegador. Ela não pode ser desfeita.</p>
+            <label for="deleteAccountEmail">E-mail da conta</label>
+            <input id="deleteAccountEmail" type="email" autocomplete="email" required>
+            <label for="deleteAccountPassword">Confirme sua senha</label>
+            <input id="deleteAccountPassword" type="password" autocomplete="current-password" required>
+            <label class="delete-confirmation" for="deleteAccountConfirmation">
+                <input id="deleteAccountConfirmation" type="checkbox" required>
+                <span>Entendo que esta exclusão é permanente.</span>
+            </label>
+            <p class="delete-error" id="deleteAccountError" role="alert" hidden></p>
+            <div class="dialog-actions">
+                <button class="secondary-button" type="button" data-close-dialog="deleteAccountDialog">Cancelar</button>
+                <button class="danger-button" id="confirmDeleteAccount" type="submit">Excluir permanentemente</button>
+            </div>
         </form>
     </dialog>
 

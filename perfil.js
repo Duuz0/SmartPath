@@ -13,7 +13,7 @@
   }
   function getProfile() {
     const saved = safeParse(localStorage.getItem(KEYS.profile), {});
-    return { name: localStorage.getItem('nomeUsuario') || saved.name || 'Estudante', email: saved.email || '', goal: Number(saved.goal) || 8, reminder: Boolean(saved.reminder) };
+    return { name: localStorage.getItem('nomeUsuario') || saved.name || 'Estudante', email: localStorage.getItem('emailUsuario') || saved.email || '', goal: Number(saved.goal) || 8, reminder: Boolean(saved.reminder) };
   }
   function getSessions() { return safeParse(localStorage.getItem(KEYS.sessions), []); }
   function getPerformance() { return safeParse(localStorage.getItem(KEYS.performance), []); }
@@ -148,6 +148,48 @@
     $('#performanceDialog').close();
     renderDashboard();
   }
+  function clearUserData() {
+    Object.values(KEYS).forEach(key => localStorage.removeItem(key));
+    ['nomeUsuario', 'emailUsuario', 'smartpath-trail-completed', 'smartpath-active-trail', 'smartpath-ia-historico', 'smartpath-ia-aberta'].forEach(key => localStorage.removeItem(key));
+  }
+  function openDeleteAccountDialog() {
+    const profile = getProfile();
+    $('#deleteAccountForm').reset();
+    $('#deleteAccountEmail').value = profile.email;
+    $('#deleteAccountError').hidden = true;
+    $('#deleteAccountDialog').showModal();
+  }
+  async function deleteAccount(event) {
+    event.preventDefault();
+    const email = $('#deleteAccountEmail').value.trim().toLowerCase();
+    const password = $('#deleteAccountPassword').value;
+    const error = $('#deleteAccountError');
+    const confirmButton = $('#confirmDeleteAccount');
+    error.hidden = true;
+    confirmButton.disabled = true;
+
+    try {
+      const response = await fetch('/api/excluir-conta', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha: password })
+      });
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        error.textContent = data.erro || 'Não foi possível excluir a conta. Tente novamente.';
+        error.hidden = false;
+        return;
+      }
+
+      clearUserData();
+      window.location.href = '/index.html?conta_excluida=1';
+    } catch {
+      error.textContent = 'Não foi possível conectar ao servidor. Tente novamente.';
+      error.hidden = false;
+    } finally {
+      confirmButton.disabled = false;
+    }
+  }
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-route]').forEach(button => button.addEventListener('click', () => { window.location.href = button.dataset.route; }));
     document.querySelectorAll('[data-open-profile]').forEach(button => button.addEventListener('click', openProfileDialog));
@@ -156,6 +198,8 @@
     $('#timerButton').addEventListener('click', toggleTimer);
     $('#profileForm').addEventListener('submit', saveProfile);
     $('#performanceForm').addEventListener('submit', savePerformance);
+    $('#openDeleteAccount').addEventListener('click', openDeleteAccountDialog);
+    $('#deleteAccountForm').addEventListener('submit', deleteAccount);
     window.addEventListener('pagehide', saveActiveSession);
     renderProfile(); renderDashboard(); updateTimer();
     if (activeSession()) timerId = window.setInterval(updateTimer, 1000);
